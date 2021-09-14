@@ -1,6 +1,6 @@
 from django.db import models
 from usuarios.models import Usuarios
-
+#hola
 # Create your models here.
 class Donacion(models.Model):
     id_donacion = models.AutoField(primary_key=True)
