@@ -25,3 +25,4 @@ class Usuarios(models.Model):
         db_table = 'usuarios'
         managed = False
 
+#probando
