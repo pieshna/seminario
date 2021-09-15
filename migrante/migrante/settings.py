@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bitacora',
     'caravanamigrante',
     'movilidad',
+    'voluntario',
 ]
 
 MIDDLEWARE = [
