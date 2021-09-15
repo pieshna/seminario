@@ -23,6 +23,5 @@ class Usuarios(models.Model):
         verbose_name = 'usuario'
         verbose_name_plural = 'usuarios'
         db_table = 'usuarios'
-        managed = False 
-        #Hola 
-        
+        managed = False
+
