@@ -3,4 +3,8 @@ from donacion.models import Donacion
 
 # Register your models here.
 
-admin.site.register(Donacion)
+class DonacionAdmin(admin.ModelAdmin):
+    list_display = ['nombre', 'telefono', 'direccion', 'descripcion', 'fechadeentrega', 'usuario']
+    search_fields = ['nombre']
+
+admin.site.register(Donacion, DonacionAdmin)

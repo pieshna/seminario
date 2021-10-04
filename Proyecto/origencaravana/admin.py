@@ -3,4 +3,9 @@ from origencaravana.models import Origencaravana
 
 # Register your models here.
 
-admin.site.register(Origencaravana)
+class OrigenAdmin(admin.ModelAdmin):
+    list_display = ['lugar']
+    list_filter = ['lugar']
+    search_fields = ['lugar']
+
+admin.site.register(Origencaravana, OrigenAdmin)

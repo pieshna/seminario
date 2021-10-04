@@ -1,19 +1,24 @@
+# -*- coding: utf-8 -*-
 from django.db import models
+from authuser.models import AuthUser
 
 # Create your models here.
 
 class Donacion(models.Model):
-    iddonacion = models.AutoField(db_column='IdDonacion', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='Nombre', max_length=200)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=18)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=254)  # Field name made lowercase.
-    descripcion = models.CharField(db_column='Descripcion', max_length=254)  # Field name made lowercase.
-    fechadeentrega = models.DateTimeField(db_column='FechaDeEntrega')  # Field name made lowercase.
-    fkidusuario = models.IntegerField(db_column='FKIdUsuario')  # Field name made lowercase.
+    iddonacion = models.AutoField(db_column='IdDonacion', primary_key=True)
+    nombre = models.CharField('Nombre o Entidad', db_column='Nombre', max_length=200)
+    telefono = models.CharField('Teléfono', db_column='Telefono', max_length=18) 
+    direccion = models.CharField('Dirección', db_column='Direccion', max_length=254)  
+    descripcion = models.CharField('Descripción', db_column='Descripcion', max_length=254)  
+    fechadeentrega = models.DateTimeField('Entrega', db_column='FechaDeEntrega') 
+    usuario = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='FKIdUsuario')
+
 
     def __str__(self):
         return '%s' % (self.nombre)
 
     class Meta:
+        verbose_name = 'Donación'
+        verbose_name_plural = 'Donaciones'
         managed = False
         db_table = 'donacion'

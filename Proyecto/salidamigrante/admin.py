@@ -3,4 +3,8 @@ from salidamigrante.models import Salidamigrante
 
 # Register your models here.
 
-admin.site.register(Salidamigrante)
+class SalidaAdmin(admin.ModelAdmin):
+    list_display = ['migrante', 'fechasalida', 'ruta']
+    search_fields = ['migrante', 'ruta']
+
+admin.site.register(Salidamigrante, SalidaAdmin)

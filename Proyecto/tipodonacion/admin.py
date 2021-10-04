@@ -4,4 +4,9 @@ from tipodonacion.models import Tipodonacion
 
 # Register your models here.
 
-admin.site.register(Tipodonacion)
+class TipoAdmin(admin.ModelAdmin):
+    list_display = ['nombre', 'cantidad', 'donación']
+    list_filter = ['nombre']
+    search_fields = ['nombre']
+
+admin.site.register(Tipodonacion, TipoAdmin)

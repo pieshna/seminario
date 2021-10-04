@@ -3,4 +3,7 @@ from creencias.models import Creencias
 
 # Register your models here.
 
-admin.site.register(Creencias)
+class CreenciasAdmin(admin.ModelAdmin):
+    list_filter = ['nombre']
+
+admin.site.register(Creencias, CreenciasAdmin)
