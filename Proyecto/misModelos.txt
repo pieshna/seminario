@@ -1,0 +1,339 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
+from django.db import models
+
+
+class AdminInterfaceTheme(models.Model):
+    name = models.CharField(unique=True, max_length=50)
+    active = models.IntegerField()
+    title = models.CharField(max_length=50)
+    title_visible = models.IntegerField()
+    logo = models.CharField(max_length=100)
+    logo_visible = models.IntegerField()
+    css_header_background_color = models.CharField(max_length=10)
+    title_color = models.CharField(max_length=10)
+    css_header_text_color = models.CharField(max_length=10)
+    css_header_link_color = models.CharField(max_length=10)
+    css_header_link_hover_color = models.CharField(max_length=10)
+    css_module_background_color = models.CharField(max_length=10)
+    css_module_text_color = models.CharField(max_length=10)
+    css_module_link_color = models.CharField(max_length=10)
+    css_module_link_hover_color = models.CharField(max_length=10)
+    css_module_rounded_corners = models.IntegerField()
+    css_generic_link_color = models.CharField(max_length=10)
+    css_generic_link_hover_color = models.CharField(max_length=10)
+    css_save_button_background_color = models.CharField(max_length=10)
+    css_save_button_background_hover_color = models.CharField(max_length=10)
+    css_save_button_text_color = models.CharField(max_length=10)
+    css_delete_button_background_color = models.CharField(max_length=10)
+    css_delete_button_background_hover_color = models.CharField(max_length=10)
+    css_delete_button_text_color = models.CharField(max_length=10)
+    css = models.TextField()
+    list_filter_dropdown = models.IntegerField()
+    related_modal_active = models.IntegerField()
+    related_modal_background_color = models.CharField(max_length=10)
+    related_modal_rounded_corners = models.IntegerField()
+    logo_color = models.CharField(max_length=10)
+    recent_actions_visible = models.IntegerField()
+    favicon = models.CharField(max_length=100)
+    related_modal_background_opacity = models.CharField(max_length=5)
+    env_name = models.CharField(max_length=50)
+    env_visible_in_header = models.IntegerField()
+    env_color = models.CharField(max_length=10)
+    env_visible_in_favicon = models.IntegerField()
+    related_modal_close_button_visible = models.IntegerField()
+    language_chooser_active = models.IntegerField()
+    language_chooser_display = models.CharField(max_length=10)
+    list_filter_sticky = models.IntegerField()
+    form_pagination_sticky = models.IntegerField()
+    form_submit_sticky = models.IntegerField()
+    css_module_background_selected_color = models.CharField(max_length=10)
+    css_module_link_selected_color = models.CharField(max_length=10)
+
+    class Meta:
+        managed = False
+        db_table = 'admin_interface_theme'
+
+
+class Asistencia(models.Model):
+    idasistencia = models.AutoField(db_column='IdAsistencia', primary_key=True)  # Field name made lowercase.
+    fkidvoluntario = models.ForeignKey('Voluntario', models.DO_NOTHING, db_column='FKIdVoluntario')  # Field name made lowercase.
+    entrada = models.TimeField(db_column='Entrada')  # Field name made lowercase.
+    salida = models.TimeField(db_column='Salida')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'asistencia'
+
+
+class AuthGroup(models.Model):
+    name = models.CharField(unique=True, max_length=150)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_group'
+
+
+class AuthGroupPermissions(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_group_permissions'
+        unique_together = (('group', 'permission'),)
+
+
+class AuthPermission(models.Model):
+    name = models.CharField(max_length=255)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    codename = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_permission'
+        unique_together = (('content_type', 'codename'),)
+
+
+class AuthUser(models.Model):
+    password = models.CharField(max_length=128)
+    last_login = models.DateTimeField(blank=True, null=True)
+    is_superuser = models.IntegerField()
+    username = models.CharField(unique=True, max_length=150)
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    email = models.CharField(max_length=254)
+    is_staff = models.IntegerField()
+    is_active = models.IntegerField()
+    date_joined = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'auth_user'
+
+
+class AuthUserGroups(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_user_groups'
+        unique_together = (('user', 'group'),)
+
+
+class AuthUserUserPermissions(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_user_user_permissions'
+        unique_together = (('user', 'permission'),)
+
+
+class Caravanamigrante(models.Model):
+    idcaravana = models.AutoField(db_column='IdCaravana', primary_key=True)  # Field name made lowercase.
+    fkidmigrante = models.ForeignKey('Migrante', models.DO_NOTHING, db_column='FkIdMigrante')  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=50)  # Field name made lowercase.
+    fkidpais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='FkIdPais')  # Field name made lowercase.
+    fkorigen = models.ForeignKey('Origencaravana', models.DO_NOTHING, db_column='FkOrigen')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'caravanamigrante'
+
+
+class Creencias(models.Model):
+    idcreencia = models.AutoField(db_column='IdCreencia', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=50)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'creencias'
+
+
+class Diasdevoluntariado(models.Model):
+    iddia = models.AutoField(db_column='IdDia', primary_key=True)  # Field name made lowercase.
+    diaarealizar = models.CharField(db_column='DiaARealizar', max_length=15)  # Field name made lowercase.
+    horasaprox = models.CharField(db_column='HorasAprox', max_length=10)  # Field name made lowercase.
+    fkidvoluntario = models.ForeignKey('Voluntario', models.DO_NOTHING, db_column='FkIdVoluntario')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'diasdevoluntariado'
+
+
+class DjangoAdminLog(models.Model):
+    action_time = models.DateTimeField()
+    object_id = models.TextField(blank=True, null=True)
+    object_repr = models.CharField(max_length=200)
+    action_flag = models.PositiveSmallIntegerField()
+    change_message = models.TextField()
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'django_admin_log'
+
+
+class DjangoContentType(models.Model):
+    app_label = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'django_content_type'
+        unique_together = (('app_label', 'model'),)
+
+
+class DjangoMigrations(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    app = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_migrations'
+
+
+class DjangoSession(models.Model):
+    session_key = models.CharField(primary_key=True, max_length=40)
+    session_data = models.TextField()
+    expire_date = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_session'
+
+
+class Donacion(models.Model):
+    iddonacion = models.AutoField(db_column='IdDonacion', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=200)  # Field name made lowercase.
+    telefono = models.CharField(db_column='Telefono', max_length=18)  # Field name made lowercase.
+    direccion = models.CharField(db_column='Direccion', max_length=254)  # Field name made lowercase.
+    descripcion = models.CharField(db_column='Descripcion', max_length=254)  # Field name made lowercase.
+    fechadeentrega = models.DateTimeField(db_column='FechaDeEntrega')  # Field name made lowercase.
+    fkidusuario = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='FKIdUsuario')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'donacion'
+
+
+class Entradamigrante(models.Model):
+    idmovilidad = models.AutoField(db_column='IdMovilidad', primary_key=True)  # Field name made lowercase.
+    fkidmigrante = models.ForeignKey('Migrante', models.DO_NOTHING, db_column='FkIdMigrante')  # Field name made lowercase.
+    fechaentrada = models.DateTimeField(db_column='FechaEntrada')  # Field name made lowercase.
+    fkidmodulo = models.ForeignKey('Modulo', models.DO_NOTHING, db_column='FkIdModulo')  # Field name made lowercase.
+    descripcion = models.CharField(db_column='Descripcion', max_length=254)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'entradamigrante'
+
+
+class Migrante(models.Model):
+    idmigrante = models.AutoField(db_column='IdMigrante', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=50)  # Field name made lowercase.
+    apellido = models.CharField(db_column='Apellido', max_length=50)  # Field name made lowercase.
+    telefono = models.CharField(db_column='Telefono', max_length=16)  # Field name made lowercase.
+    genero = models.CharField(db_column='Genero', max_length=1)  # Field name made lowercase.
+    edad = models.IntegerField(db_column='Edad')  # Field name made lowercase.
+    fechanacimiento = models.DateField(db_column='FechaNacimiento')  # Field name made lowercase.
+    nacionalidad = models.CharField(db_column='Nacionalidad', max_length=50)  # Field name made lowercase.
+    fkidusuario = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='FKIdUsuario')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'migrante'
+
+
+class Modulo(models.Model):
+    idmodulo = models.AutoField(db_column='IdModulo', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=50)  # Field name made lowercase.
+    capacidad = models.IntegerField(db_column='Capacidad')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'modulo'
+
+
+class Origencaravana(models.Model):
+    idcaravana = models.AutoField(db_column='IdCaravana', primary_key=True)  # Field name made lowercase.
+    lugar = models.CharField(db_column='Lugar', max_length=60)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'origencaravana'
+
+
+class Pais(models.Model):
+    idpais = models.AutoField(db_column='IdPais', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=50)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'pais'
+
+
+class Ruta(models.Model):
+    idruta = models.AutoField(db_column='IdRuta', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=50)  # Field name made lowercase.
+    destino = models.CharField(db_column='Destino', max_length=50)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'ruta'
+
+
+class Salidamigrante(models.Model):
+    idsalida = models.AutoField(db_column='IdSalida', primary_key=True)  # Field name made lowercase.
+    fkidmigrante = models.ForeignKey(Migrante, models.DO_NOTHING, db_column='FKIdMigrante')  # Field name made lowercase.
+    fechasalida = models.DateTimeField(db_column='FechaSalida')  # Field name made lowercase.
+    fkidruta = models.ForeignKey(Ruta, models.DO_NOTHING, db_column='FkIdRuta')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'salidamigrante'
+
+
+class Tipodonacion(models.Model):
+    idtipodonacion = models.AutoField(db_column='IdTipoDonacion', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=75)  # Field name made lowercase.
+    cantidad = models.IntegerField(db_column='Cantidad')  # Field name made lowercase.
+    fkiddonacion = models.ForeignKey(Donacion, models.DO_NOTHING, db_column='FKIdDonacion')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'tipodonacion'
+
+
+class Voluntario(models.Model):
+    idvoluntario = models.AutoField(db_column='IdVoluntario', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=50)  # Field name made lowercase.
+    apellido = models.CharField(db_column='Apellido', max_length=50)  # Field name made lowercase.
+    telefono = models.CharField(db_column='Telefono', max_length=16)  # Field name made lowercase.
+    genero = models.CharField(db_column='Genero', max_length=1)  # Field name made lowercase.
+    edad = models.IntegerField(db_column='Edad')  # Field name made lowercase.
+    fechanacimiento = models.DateField(db_column='FechaNacimiento')  # Field name made lowercase.
+    nacionalidad = models.CharField(db_column='Nacionalidad', max_length=50)  # Field name made lowercase.
+    correo = models.CharField(db_column='Correo', max_length=75)  # Field name made lowercase.
+    direccion = models.CharField(db_column='Direccion', max_length=120)  # Field name made lowercase.
+    tipovoluntario = models.CharField(db_column='TipoVoluntario', max_length=20)  # Field name made lowercase.
+    fkcreenciasreligiosas = models.ForeignKey(Creencias, models.DO_NOTHING, db_column='FKCreenciasReligiosas')  # Field name made lowercase.
+    fkidusuario = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='FKIdUsuario')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'voluntario'
